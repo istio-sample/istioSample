@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: core1
+  labels:
+    app: core1
+spec:
+  ports:
+    - port: 8090
+      name: http
+  selector:
+    app: core1
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: core1-v1
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: core1
+        version: v1
+    spec:
+      containers:
+        - name: core1
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: istio
+          image: leel2415/istio-core1:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8090

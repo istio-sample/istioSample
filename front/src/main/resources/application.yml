@@ -1,0 +1,13 @@
+
+server:
+  port: 8080
+
+logging:
+  level:
+    com:
+      istio:
+        front: debug
+
+spring:
+  profiles:
+    active: local
