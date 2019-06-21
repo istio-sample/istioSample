@@ -16,7 +16,10 @@ metadata:
 spec:
   host: core1
   subsets:
-    - name: v1
+    - name: blue
       labels:
         version: v1
+    - name: green
+      labels:
+        version: v2
 

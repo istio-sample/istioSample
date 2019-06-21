@@ -13,6 +13,10 @@
                 <dl th:each="key : ${map.keySet()}">
                     <dt><span th:text="${key}"></span> = <span th:text="${map.get(key)}"></span></dt>
                 </dl>
+
+                <p th:if="${map.env} == BLUE" class="text-primary"><b>BLUE</b></p>
+                <p th:if="${map.env} == GREEN" class="text-success"><b>GREEN</b></p>
+
             </div>
         </div>
     </div>

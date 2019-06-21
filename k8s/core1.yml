@@ -14,7 +14,7 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: core1-v1
+  name: core1-blue
 spec:
   replicas: 1
   template:
@@ -24,11 +24,33 @@ spec:
         version: v1
     spec:
       containers:
-        - name: core1
+        - name: core1-blue
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: istio
-          image: leel2415/istio-core1:latest
+          image: leel2415/istio-core1-blue
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8090
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: core1-green
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: core1
+        version: v2
+    spec:
+      containers:
+        - name: core1-green
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: istio
+          image: leel2415/istio-core1-green
           imagePullPolicy: Always
           ports:
             - containerPort: 8090
