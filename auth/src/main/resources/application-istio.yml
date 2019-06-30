@@ -1,0 +1,11 @@
+feign:
+  hystrix:
+    enabled: false
+  core1.url: http://core1:8090
+
+
+istio:
+  blue:
+    domain: blue.istio.com
+  green:
+    domain: green.istio.com
