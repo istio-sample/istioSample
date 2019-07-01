@@ -2,7 +2,7 @@ feign:
   hystrix:
     enabled: false
   core1.url: http://core1:8090
-
+  auth.url: http://auth:9080
 
 istio:
   blue:

@@ -2,3 +2,4 @@ feign:
   hystrix:
     enabled: false
   core1.url: http://localhost:8090
+  auth.url: http://localhost:9080

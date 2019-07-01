@@ -24,6 +24,8 @@
             <button type="button" class="btn btn-lg btn-warning">Warning</button>
             <button type="button" class="btn btn-lg btn-danger">Danger</button>
             <button type="button" class="btn btn-lg btn-link">Link</button>
+
+            <button type="button" class="btn btn-lg btn-auth">Auth Page</button>
         </p>
     </div>
 
@@ -33,6 +35,10 @@
         $(document).ready(function(){
             $(".btn-default").on("click", function(){
                 document.location = "/ab";
+            });
+
+            $(".btn-auth").on("click", function(){
+                document.location = "/authPage";
             });
         });
     </script>

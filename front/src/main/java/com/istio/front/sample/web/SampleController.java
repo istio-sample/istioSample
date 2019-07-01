@@ -28,4 +28,11 @@ public class SampleController {
         model.addAttribute("map", sampleService.ab());
         return "ab";
     }
+
+    @GetMapping("/authPage")
+    public String authPage(Model model){
+
+        model.addAttribute("map", sampleService.authPage());
+        return "authPage";
+    }
 }
