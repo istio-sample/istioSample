@@ -8,3 +8,5 @@ logging:
         core1: debug
 
 
+custom:
+  hostname: ${hostname:NULL}
