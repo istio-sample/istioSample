@@ -1,5 +1,5 @@
-com/istio/front/sample/web/SampleController.class
-com/istio/front/FrontApplication.class
-com/istio/front/sample/client/SampleClient.class
-com/istio/front/sample/interceptor/HeaderInterceptor.class
-com/istio/front/sample/service/SampleService.class
+com\istio\front\sample\interceptor\HeaderInterceptor.class
+com\istio\front\sample\web\SampleController.class
+com\istio\front\sample\service\SampleService.class
+com\istio\front\sample\client\SampleClient.class
+com\istio\front\FrontApplication.class

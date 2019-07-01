@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-FrontApplication<front>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.istio.front.FrontApplication",
+            "projectName": "front",
+            "args": ""
+        }
+    ]
+}
