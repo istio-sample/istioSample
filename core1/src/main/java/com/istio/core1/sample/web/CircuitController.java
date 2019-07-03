@@ -6,6 +6,8 @@ import java.util.Random;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.istio.core1.sample.exception.TestException;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +44,11 @@ public class CircuitController {
             } else {
                 response.setStatus(responseCode);
                 result.put("result", "FAILED");
+            }
+
+            if(responseCode > 1000){
+                // unknown Issue
+                throw new TestException("unknown responseCode");
             }
         }
         return result;

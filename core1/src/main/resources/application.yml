@@ -10,3 +10,9 @@ logging:
 
 custom:
   hostname: ${hostname:NULL}
+
+spring:
+  redis:
+    host: 169.56.68.142
+    port: 32695
+    database: 0

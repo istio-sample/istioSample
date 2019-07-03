@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "core1"
+		},
+		{
+			"path": "front"
+		}
+	],
+	"settings": {
+		"java.configuration.updateBuildConfiguration": "automatic"
+	}
+}
