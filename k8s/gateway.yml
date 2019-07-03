@@ -25,6 +25,14 @@ spec:
   http:
     - match:
         - uri:
+            prefix: /circuits
+      route:
+        - destination:
+            host: core1
+            port:
+              number: 8090
+    - match:
+        - uri:
             prefix: /
       route:
         - destination:
