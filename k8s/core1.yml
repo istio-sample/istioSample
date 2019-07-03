@@ -8,6 +8,7 @@ spec:
   ports:
     - port: 8090
       name: http
+  type: NodePort
   selector:
     app: core1
 ---
