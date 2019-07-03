@@ -35,7 +35,7 @@ public class SampleService {
     }
 
     public Map circuit01(String circuitType, int failRate, int responseCode){
-        Map resultMap = circuitClient.circuit01(circuitType, failRate, responseCode)
+        Map resultMap = circuitClient.circuit01(circuitType, failRate, responseCode);
         log.info("circuit01");
         return resultMap;
     }
