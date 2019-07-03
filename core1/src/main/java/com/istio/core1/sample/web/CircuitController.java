@@ -39,11 +39,11 @@ public class CircuitController {
         if ("all".equals(circuitType) || hostname.contains(circuitType)) {
             Random r = new Random();
             if (r.nextInt(100) < failRate + 1) {
-                response.setStatus(HttpServletResponse.SC_OK);
-                result.put("result", "SC_OK");
-            } else {
                 response.setStatus(responseCode);
                 result.put("result", "FAILED");
+            } else {
+                response.setStatus(HttpServletResponse.SC_OK);
+                result.put("result", "SC_OK");
             }
 
             if(responseCode > 1000){
