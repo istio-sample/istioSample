@@ -43,7 +43,7 @@
 
             $(".btn-primary").on("click", function() {
                $.get("/circuits/circuit01", function(d){
-                    alert(d);
+                    alert(JSON.stringify(d));
                });
             });
 
