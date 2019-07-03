@@ -3,6 +3,7 @@ package com.istio.core1.sample.web;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -33,12 +34,17 @@ public class CircuitController {
     @GetMapping("circuit01")
     public Map<String, String> circuit01(@RequestParam(defaultValue = "all") String circuitType,
             @RequestParam(defaultValue = "0") int failRate, @RequestParam(defaultValue = "200") int responseCode,
-            HttpServletResponse response) {
+            @RequestParam(defaultValue = "0") long delay, HttpServletResponse response) throws Exception {
+                
+        TimeUnit.MILLISECONDS.sleep(delay);
+
         Map<String, String> result = new HashMap<>();
 
         if ("all".equals(circuitType) || hostname.contains(circuitType)) {
             Random r = new Random();
-            if (r.nextInt(100) < failRate + 1) {
+            int num = r.nextInt(100);
+            log.error("" + num);
+            if (num < failRate + 1) {
                 response.setStatus(responseCode);
                 result.put("result", "FAILED");
             } else {
@@ -46,7 +52,7 @@ public class CircuitController {
                 result.put("result", "SC_OK");
             }
 
-            if(responseCode > 1000){
+            if (responseCode > 1000) {
                 // unknown Issue
                 throw new TestException("unknown responseCode");
             }

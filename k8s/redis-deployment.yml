@@ -1,0 +1,29 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  redis-local
+spec:
+  selector:
+    app:  redis-local
+  type:  NodePort
+  ports:
+  - name:  redis-local
+    port:  6379
+    targetPort: 6379
+
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: redis
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        editor: vscode
+        app: redis-local
+    spec:
+      containers:
+      - name: redis-local
+        image: redis
