@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 /**
  * CircuitClient
  */
-@FeignClient(name = "core1", url = "${feign.core1.url}")
+@FeignClient(name = "circuit", url = "${feign.core1.url}")
 public interface CircuitClient {
     @GetMapping("/circuits/circuit01")
     public Map<String, String> circuit01(@RequestParam String circuitType,
