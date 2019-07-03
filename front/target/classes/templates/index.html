@@ -40,6 +40,13 @@
             $(".btn-auth").on("click", function(){
                 document.location = "/authPage";
             });
+
+            $(".btn-primary").on("click", function() {
+               $.get("/circuits/circuit01", function(d){
+                    alert(d);
+               });
+            });
+
         });
     </script>
 
