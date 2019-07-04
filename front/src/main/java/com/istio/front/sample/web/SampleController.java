@@ -1,5 +1,10 @@
 package com.istio.front.sample.web;
 
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.istio.front.sample.service.SampleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,16 +35,12 @@ public class SampleController {
     }
 
     @GetMapping("/auth/authPage")
-    public String authPage(Model model){
+    public String authPage(Model model, HttpServletRequest resuest){
+
+        String auth = resuest.getHeader("Authorization");
+        log.debug("authPage::auth::" + auth);
 
         model.addAttribute("map", sampleService.authPage());
         return "authPage";
-    }
-
-    @GetMapping("/login")
-    public String loginForm(Model model){
-
-        //model.addAttribute("map", sampleService.authPage());
-        return "index";
     }
 }

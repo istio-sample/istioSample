@@ -21,6 +21,11 @@ public class AuthController {
     @GetMapping("/authInfo")
     public Map authInfo(@RequestHeader Map<String, String> headers){
 
+        headers.keySet();
+        log.debug("keySet::" + headers.keySet().toString());
+
+        log.debug("value::" + headers.get("authorization"));
+
         Map map = new HashMap();
 
         map.put("login", "true");

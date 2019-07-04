@@ -6,7 +6,7 @@ logging:
   level:
     com:
       istio:
-        front: debug
+        auth: debug
 
 spring:
   profiles:

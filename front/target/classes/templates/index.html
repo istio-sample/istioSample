@@ -30,7 +30,7 @@
             <h1>JWK Auth TEST</h1>
         </div>
         <p>
-            <button type="button" class="btn btn-lg btn-primary btn-auth">Auth Page</button>
+            <button type="button" class="btn btn-lg btn-primary btn-auth">Auth Page (/auth/authPage)</button>
             <button type="button" class="btn btn-lg btn-danger btn-login">do Login</button>
         </p>
 
@@ -49,7 +49,12 @@
             });
 
             $(".btn-login").on("click", function(){
-                alert('11');
+                //document.location = "/login";
+
+                $.ajax({url: "/login", success: function(result){
+                    console.log(result);
+                    console.log(result.auth);
+                }});
             });
 
             $(".btn-primary").on("click", function() {
