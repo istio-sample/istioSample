@@ -29,10 +29,17 @@ public class SampleController {
         return "ab";
     }
 
-    @GetMapping("/authPage")
+    @GetMapping("/auth/authPage")
     public String authPage(Model model){
 
         model.addAttribute("map", sampleService.authPage());
         return "authPage";
+    }
+
+    @GetMapping("/login")
+    public String loginForm(Model model){
+
+        //model.addAttribute("map", sampleService.authPage());
+        return "index";
     }
 }

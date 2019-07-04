@@ -10,4 +10,7 @@ spec:
   - jwt:
       issuer: "testing@secure.istio.io"
       jwksUri: "https://raw.githubusercontent.com/istio/istio/release-1.2/security/tools/jwt/samples/jwks.json"
+      trigger_rules:
+      - included_paths:
+        - prefix: /auth/
   principalBinding: USE_ORIGIN
