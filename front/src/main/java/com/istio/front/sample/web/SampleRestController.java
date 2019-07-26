@@ -2,6 +2,7 @@ package com.istio.front.sample.web;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.istio.front.sample.service.SampleService;
@@ -33,5 +34,14 @@ public class SampleRestController {
         response.addHeader("Authorization", result.get("auth").toString());
 
         return result;
+    }
+
+    @GetMapping("/auth/authApi")
+    public Map authPage(Model model, HttpServletRequest resuest){
+
+        String token = resuest.getHeader("Authorization");
+        log.debug("authPage::token::" + token);
+
+        return sampleService.authPage(token);
     }
 }

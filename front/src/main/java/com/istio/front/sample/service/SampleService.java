@@ -3,6 +3,7 @@ package com.istio.front.sample.service;
 import com.istio.front.sample.client.AuthClient;
 import com.istio.front.sample.client.CircuitClient;
 import com.istio.front.sample.client.SampleClient;
+import com.nimbusds.jose.JOSEObjectType;
 import com.nimbusds.jose.JWSAlgorithm;
 import com.nimbusds.jose.JWSHeader;
 import com.nimbusds.jose.JWSSigner;
@@ -51,9 +52,10 @@ public class SampleService {
         return sampleClient.sample();
     }
 
-    public Map authPage(){
+    public Map authPage(String token){
 
-        Map resultMap = authClient.authInfo();
+        //Map resultMap = authClient.authInfo();
+        Map resultMap = authClient.authInfoWithHeader("Bearer " + token);
         log.debug(resultMap.toString());
         return resultMap;
     }
@@ -97,13 +99,13 @@ public class SampleService {
             JWSSigner signer = new RSASSASigner(rsajwk);
 
             JWTClaimsSet claimsSet = new JWTClaimsSet.Builder()
-                .subject("alice")
-                .issuer("https://c2id.com")
-                .expirationTime(new Date(new Date().getTime() + 5 * 1000))
+                .subject("testing@secure.istio.io")
+                .issuer("testing@secure.istio.io")
+                .expirationTime(new Date(new Date().getTime() + 60 * 1000))
                 .build();
             
             SignedJWT signedJWT = new SignedJWT(
-                    new JWSHeader.Builder(JWSAlgorithm.RS256).keyID("DHFbpoIUqrY8t2zpA2qXfCmr5VO5ZEr4RzHU_-envvQ").build(),
+                    new JWSHeader.Builder(JWSAlgorithm.RS256).keyID("DHFbpoIUqrY8t2zpA2qXfCmr5VO5ZEr4RzHU_-envvQ").type(JOSEObjectType.JWT).build(),
                     claimsSet);
             
             signedJWT.sign(signer);
@@ -121,6 +123,8 @@ public class SampleService {
             //resultMap = authClient.authInfoWithHeader("Bearer " + s);
 
             resultMap = new HashMap();
+            //test
+            //s = "eyJhbGciOiJSUzI1NiIsImtpZCI6IkRIRmJwb0lVcXJZOHQyenBBMnFYZkNtcjVWTzVaRXI0UnpIVV8tZW52dlEiLCJ0eXAiOiJKV1QifQ.eyJleHAiOjQ2ODU5ODk3MDAsImZvbyI6ImJhciIsImlhdCI6MTUzMjM4OTcwMCwiaXNzIjoidGVzdGluZ0BzZWN1cmUuaXN0aW8uaW8iLCJzdWIiOiJ0ZXN0aW5nQHNlY3VyZS5pc3Rpby5pbyJ9.CfNnxWP2tcnR9q0vxyxweaF3ovQYHYZl82hAUsn21bwQd9zP7c-LS9qd_vpdLG4Tn1A15NxfCjp5f7QNBUo-KC9PJqYpgGbaXhaGx7bEdFWjcwv3nZzvc7M__ZpaCERdwU7igUmJqYGBYQ51vr2njU9ZimyKkfDe3axcyiBZde7G6dabliUosJvvKOPcKIWPccCgefSj_GNfwIip3-SsFdlR7BtbVUcqR-yv-XOxJ3Uc1MI0tz3uMiiZcyPV7sNCU4KRnemRIMHVOfuvHsU60_GhGbiSFzgPTAa9WTltbnarTbxudb_YEOx12JiwYToeX0DCPb43W1tzIBxgm8NxUg";
             resultMap.put("auth", "Bearer " + s);
             log.debug(resultMap.toString());
 

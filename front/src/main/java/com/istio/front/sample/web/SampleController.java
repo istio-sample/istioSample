@@ -40,7 +40,7 @@ public class SampleController {
         String auth = resuest.getHeader("Authorization");
         log.debug("authPage::auth::" + auth);
 
-        model.addAttribute("map", sampleService.authPage());
+        //model.addAttribute("map", sampleService.authPage());
         return "authPage";
     }
 }

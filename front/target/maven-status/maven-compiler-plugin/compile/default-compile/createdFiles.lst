@@ -1,3 +1,4 @@
+com/istio/front/sample/web/SampleRestController.class
 com/istio/front/sample/interceptor/HeaderInterceptor.class
 com/istio/front/sample/web/SampleController.class
 com/istio/front/sample/client/CircuitClient.class
