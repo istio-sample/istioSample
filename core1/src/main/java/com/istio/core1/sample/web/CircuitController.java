@@ -40,6 +40,8 @@ public class CircuitController {
 
         Map<String, String> result = new HashMap<>();
 
+        result.put("hostname",hostname);
+
         if ("all".equals(circuitType) || hostname.contains(circuitType)) {
             Random r = new Random();
             int num = r.nextInt(100);
