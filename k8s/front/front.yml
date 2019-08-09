@@ -10,6 +10,7 @@ spec:
       name: http
   selector:
     app: front
+  type: NodePort
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
@@ -28,7 +29,7 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: istio
-          image: leel2415/istio-front:latest
+          image: twdd.icp.skt.com:8500/istio-test/istio-front:1.0.0
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

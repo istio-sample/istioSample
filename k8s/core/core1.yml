@@ -29,7 +29,7 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: istio
-          image: leel2415/istio-core1-blue
+          image: twdd.icp.skt.com:8500/istio-test/istio-core1-blue
           imagePullPolicy: Always
           ports:
             - containerPort: 8090
@@ -51,7 +51,7 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: istio
-          image: leel2415/istio-core1-green
+          image: twdd.icp.skt.com:8500/istio-test/istio-core1-green
           imagePullPolicy: Always
           ports:
             - containerPort: 8090
