@@ -1,8 +1,8 @@
 feign:
   hystrix:
     enabled: false
-  core1.url: http://core1:8090
-  auth.url: http://auth:9080
+  core1.url: core1-app
+  auth.url: http://core1-app
 
 istio:
   blue:

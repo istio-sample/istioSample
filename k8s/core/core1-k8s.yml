@@ -1,0 +1,84 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: core1-app
+spec:
+  selector:
+    app: core1-deploy-app
+  ports:
+  - name: http
+    port: 8090
+    targetPort: 8090
+  type: NodePort
+    
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: core1-deploy-app
+    version: v1
+  name: core1-app-v1
+spec:
+  selector:
+    matchLabels:
+      app: core1-deploy-app
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: core1-deploy-app
+        version: v1
+    spec:
+      containers:
+      - name: core1app
+        image: twdd.icp.skt.com:8500/istio-test/istio-core1:0.0.1
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "500m"
+          limits:
+            memory: "1G"
+            cpu: "2"
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: k8s
+        ports:
+        - containerPort: 8090
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: core1-deploy-app
+    version: v2 
+  name: core1-app-v2
+spec:
+  selector:
+    matchLabels:
+      app: core1-deploy-app
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: core1-deploy-app
+        version: v2
+    spec:
+      containers:
+      - name: core1app
+        image: twdd.icp.skt.com:8500/istio-test/istio-core1:0.0.1
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "500m"
+          limits:
+            memory: "1G"
+            cpu: "2"
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: k8s
+        ports:
+        - containerPort: 8090

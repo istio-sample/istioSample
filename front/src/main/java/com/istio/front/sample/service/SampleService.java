@@ -1,5 +1,14 @@
 package com.istio.front.sample.service;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URI;
+import java.net.URL;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 import com.istio.front.sample.client.AuthClient;
 import com.istio.front.sample.client.CircuitClient;
 import com.istio.front.sample.client.SampleClient;
@@ -16,24 +25,13 @@ import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpStatusCodeException;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import lombok.extern.slf4j.Slf4j;
-
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.security.Key;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.crypto.spec.SecretKeySpec;
-import javax.xml.bind.DatatypeConverter;
 
 @Service
 @Slf4j
@@ -134,8 +132,32 @@ public class SampleService {
         return resultMap;
     }
 
-    public Map circuit01(String circuitType, int failRate, int responseCode){
-        Map resultMap = circuitClient.circuit01(circuitType, failRate, responseCode);
+
+    @Autowired
+    RestTemplate restTemplate;
+
+    @Value("${feign.core1.url}")
+    String coreUrl;
+
+    public Map circuit01(String circuitType, int failRate, int responseCode, long delay){
+        
+        URI uri = UriComponentsBuilder.newInstance().scheme("http").host(coreUrl).port("8090")
+        .path("/circuits/circuit01")
+        .queryParam("circuitType", circuitType)
+        .queryParam("failRate", ""+failRate)
+        .queryParam("responseCode", ""+responseCode)
+        .queryParam("delay", ""+delay)
+        .build()
+        .toUri();
+
+        Map resultMap = new HashMap();
+        try{
+            resultMap =  restTemplate.getForObject(uri, Map.class);
+        } catch( HttpStatusCodeException exception) {
+            resultMap.put("result", exception.getStatusCode());
+            resultMap.put("message", exception.getResponseBodyAsString());
+        }
+        // Map resultMap = circuitClient.circuit01(circuitType, failRate, responseCode, delay);
         log.info("circuit01");
         return resultMap;
     }

@@ -1,5 +1,5 @@
 spring:
   redis:
-    host: 169.56.98.158
-    port: 32594
-    database: 1
+    host: tongtong
+    port: 31200
+    database: 2

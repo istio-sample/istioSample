@@ -47,9 +47,9 @@ public class SampleController {
     }
 
     @GetMapping("/circuit")
-    public String circuitPage(Model model,HttpServletRequest resuest, @RequestParam(defaultValue = "all") String circuitType, @RequestParam(defaultValue = "0") int failRate, @RequestParam(defaultValue = "200") int responseCode){
+    public String circuitPage(Model model,HttpServletRequest resuest, @RequestParam(defaultValue = "all") String circuitType, @RequestParam(defaultValue = "0") int failRate, @RequestParam(defaultValue = "200") int responseCode, @RequestParam(defaultValue = "10") long delay){
 
-        model.addAttribute("map", sampleService.circuit01(circuitType, failRate, responseCode));
+        model.addAttribute("map", sampleService.circuit01(circuitType, failRate, responseCode, delay));
         return "circuitPage";
     }
 }

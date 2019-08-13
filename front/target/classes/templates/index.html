@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Hello Millky</title>
-    <link rel="stylesheet" href="/webjars/bootstrap/3.3.4/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.4/dist/css/bootstrap.min.css}">
     <title>Index HTML</title>
 </head>
 <body>
@@ -18,8 +18,8 @@
         </div>
         <p>
             <button type="button" class="btn btn-lg btn-default">Blue/Green Test</button>
-            <button type="button" class="btn btn-lg btn-primary">Primary</button>
-            <button type="button" class="btn btn-lg btn-success">Success</button>
+            <button type="button" class="btn btn-lg btn-primary">circuit async</button>
+            <button type="button" class="btn btn-lg btn-success">circuit redirect</button>
             <button type="button" class="btn btn-lg btn-info">Info</button>
             <button type="button" class="btn btn-lg btn-warning">Warning</button>
             <button type="button" class="btn btn-lg btn-danger">Danger</button>
@@ -36,8 +36,8 @@
 
     </div>
 
-    <script src="/webjars/jquery/2.1.3/dist/jquery.min.js"></script>
-    <script src="/webjars/bootstrap/3.3.4/dist/js/bootstrap.min.js"></script>
+    <script th:src="@{/webjars/jquery/2.1.3/dist/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.3.4/dist/js/bootstrap.min.js}"></script>
     <script>
         var token = "";
         $(document).ready(function(){

@@ -16,3 +16,10 @@ spring:
     host: redis-local
     port: 6379
     database: 0
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - "*"

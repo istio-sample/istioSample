@@ -13,6 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface CircuitClient {
     @GetMapping("/circuits/circuit01")
     public Map<String, String> circuit01(@RequestParam String circuitType,
-            @RequestParam int failRate, @RequestParam int responseCode);
+            @RequestParam int failRate, @RequestParam int responseCode, @RequestParam long delay);
 
 }

@@ -1,0 +1,5 @@
+spring:
+  redis:
+    host: twd-dev-redis-core-ibm-redis-ha-dev-master-svc.twd-dev-cor
+    port: 6379
+    database: 2

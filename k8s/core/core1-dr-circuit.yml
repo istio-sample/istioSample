@@ -1,0 +1,41 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: dr-core1-app-circuit
+spec:
+  host: core1-app
+  subsets:
+    - name: v1-deploy
+      labels:
+        version: v1
+      trafficPolicy:
+        connectionPool:
+          http: 
+            http1MaxPendingRequests: 1
+            maxRequestsPerConnection: 1
+          tcp: 
+            maxConnections: 1
+        loadBalancer:
+          simple: RANDOM
+        outlierDetection:
+          baseEjectionTime: 15.000s
+          consecutiveErrors: 1
+          interval: 5.000s
+          maxEjectionPercent: 100
+    - name: v2-deploy
+      labels:
+        version: v2
+      trafficPolicy:
+        connectionPool:
+          http: 
+            http1MaxPendingRequests: 1
+            maxRequestsPerConnection: 1
+          tcp: 
+            maxConnections: 1
+        loadBalancer:
+          simple: RANDOM
+        outlierDetection:
+          baseEjectionTime: 15.000s
+          consecutiveErrors: 1
+          interval: 5.000s
+          maxEjectionPercent: 100
