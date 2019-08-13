@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.istio.core1.sample.exception.TestException;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,26 +34,28 @@ public class CircuitController {
      * d:
      */
     @GetMapping("circuit01")
-    public Map<String, String> circuit01(@RequestParam(defaultValue = "all") String circuitType,
+    public ResponseEntity<String> circuit01(@RequestParam(defaultValue = "all") String circuitType,
             @RequestParam(defaultValue = "0") int failRate, @RequestParam(defaultValue = "200") int responseCode,
             @RequestParam(defaultValue = "0") long delay, HttpServletResponse response) throws Exception {
                 
         TimeUnit.MILLISECONDS.sleep(delay);
 
-        Map<String, String> result = new HashMap<>();
+        // Map<String, String> result = new HashMap<>();
 
-        result.put("hostname",hostname);
+        // result.put("hostname",hostname);
 
         if ("all".equals(circuitType) || hostname.contains(circuitType)) {
             Random r = new Random();
             int num = r.nextInt(100);
             log.error("" + num);
             if (num < failRate + 1) {
-                response.setStatus(responseCode);
-                result.put("result", "FAILED");
+                // response.setStatus(responseCode);
+                // result.put("result", "FAILED");
+                return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(String.format("%s", hostname));
             } else {
-                response.setStatus(HttpServletResponse.SC_OK);
-                result.put("result", "SC_OK");
+                // response.setStatus(HttpServletResponse.SC_OK);
+                // result.put("result", "SC_OK");
+                
             }
 
             if (responseCode > 1000) {
@@ -59,7 +63,10 @@ public class CircuitController {
                 throw new TestException("unknown responseCode");
             }
         }
-        return result;
+        // return result;
+        return ResponseEntity.status(HttpStatus.OK).body(String.format("%s", hostname));
+
+
     }
 
 }

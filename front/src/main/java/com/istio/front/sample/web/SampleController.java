@@ -24,30 +24,32 @@ public class SampleController {
     private SampleService sampleService;
 
     @GetMapping("/")
-    public String main(){
+    public String main() {
         log.debug("Call main");
         return "index";
     }
 
     @GetMapping("/ab")
-    public String ab(Model model){
+    public String ab(Model model) {
 
         model.addAttribute("map", sampleService.ab());
         return "ab";
     }
 
     @GetMapping("/auth/authPage")
-    public String authPage(Model model, HttpServletRequest resuest){
+    public String authPage(Model model, HttpServletRequest resuest) {
 
         String auth = resuest.getHeader("Authorization");
         log.debug("authPage::auth::" + auth);
 
-        //model.addAttribute("map", sampleService.authPage());
+        // model.addAttribute("map", sampleService.authPage());
         return "authPage";
     }
 
     @GetMapping("/circuit")
-    public String circuitPage(Model model,HttpServletRequest resuest, @RequestParam(defaultValue = "all") String circuitType, @RequestParam(defaultValue = "0") int failRate, @RequestParam(defaultValue = "200") int responseCode, @RequestParam(defaultValue = "10") long delay){
+    public String circuitPage(Model model, HttpServletRequest resuest,
+            @RequestParam(defaultValue = "all") String circuitType, @RequestParam(defaultValue = "0") int failRate,
+            @RequestParam(defaultValue = "200") int responseCode, @RequestParam(defaultValue = "10") long delay) {
 
         model.addAttribute("map", sampleService.circuit01(circuitType, failRate, responseCode, delay));
         return "circuitPage";

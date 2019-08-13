@@ -26,6 +26,7 @@ import com.nimbusds.jwt.SignedJWT;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
@@ -152,7 +153,11 @@ public class SampleService {
 
         Map resultMap = new HashMap();
         try{
-            resultMap =  restTemplate.getForObject(uri, Map.class);
+
+            ResponseEntity<String> result =  restTemplate.getForEntity(uri, String.class);
+            resultMap.put("result", result.getStatusCode());
+            resultMap.put("message", result.getBody());
+
         } catch( HttpStatusCodeException exception) {
             resultMap.put("result", exception.getStatusCode());
             resultMap.put("message", exception.getResponseBodyAsString());
