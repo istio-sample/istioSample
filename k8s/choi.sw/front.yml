@@ -35,3 +35,26 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: front-v2
+  namespace: foo
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: front
+        version: v2
+    spec:
+      containers:
+        - name: front
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: istio
+          image: mura2393/istio-front-v2:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080

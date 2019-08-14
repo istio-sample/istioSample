@@ -4,5 +4,5 @@ cd ../front/
 
 mvn clean package -e -U -Dmaven.test.skip=true
 
-docker build . --tag mura2393/istio-front
-docker push mura2393/istio-front
+docker build . --tag mura2393/istio-front-v2
+docker push mura2393/istio-front-v2
