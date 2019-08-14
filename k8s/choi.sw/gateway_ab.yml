@@ -13,6 +13,7 @@ spec:
       protocol: HTTP
     hosts:
     - "*"
+
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
@@ -34,10 +35,37 @@ spec:
     route:
     - destination:
         port:
-          number: 8090
+          number: 8080
         host: front.foo.svc.cluster.local
+        subset : v1
   - route:
     - destination:
         port:
           number: 8080
         host: front.foo.svc.cluster.local
+        subset : v2
+
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: product
+  namespace: foo
+spec:
+  hosts:
+  - product.foo.svc.cluster.local
+  http:
+  - match:
+    - sourceLabels:
+        app: front
+        version: v1
+    route:
+    - destination:
+        port:
+          number: 9090
+        host: product.foo.svc.cluster.local
+  - route:
+    - destination:
+        port:
+          number: 9090
+        host: product.foo.svc.cluster.local

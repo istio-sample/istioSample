@@ -2,6 +2,7 @@ package com.istio.front.sample.service;
 
 import com.istio.front.sample.client.AuthClient;
 import com.istio.front.sample.client.CircuitClient;
+import com.istio.front.sample.client.ProductClient;
 import com.istio.front.sample.client.SampleClient;
 import com.nimbusds.jose.JOSEObjectType;
 import com.nimbusds.jose.JWSAlgorithm;
@@ -47,6 +48,9 @@ public class SampleService {
 
     @Autowired
     private CircuitClient circuitClient;
+
+    @Autowired
+    private ProductClient productClient;
 
     public Map ab(){
         return sampleClient.sample();
@@ -137,6 +141,12 @@ public class SampleService {
     public Map circuit01(String circuitType, int failRate, int responseCode){
         Map resultMap = circuitClient.circuit01(circuitType, failRate, responseCode);
         log.info("circuit01");
+        return resultMap;
+    }
+
+    public Map productInfo(){
+        Map resultMap = productClient.productInfo();
+        log.info("productInfo::" + resultMap );
         return resultMap;
     }
 }

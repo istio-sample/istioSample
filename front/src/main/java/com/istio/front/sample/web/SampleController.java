@@ -66,7 +66,10 @@ public class SampleController {
     }
 
     @GetMapping("/product")
-    public String productPage(HttpServletRequest resuest, HttpServletResponse response){
+    public String productPage(HttpServletRequest resuest, HttpServletResponse response, Model model){
+        
+        model.addAttribute("product_info_map",  sampleService.productInfo());
+
         return "product";
     }
 }
