@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: product
+  namespace: foo
+  labels:
+    app: product
+spec:
+  ports:
+    - port: 9090
+      targetPort: 9090
+      name: http
+  selector:
+    app: product
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: product-v1
+  namespace: foo
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: product
+        version: v1
+    spec:
+      containers:
+        - name: product
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: istio
+          image: mura2393/istio-product:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9090

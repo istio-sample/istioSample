@@ -1,0 +1,13 @@
+
+server:
+  port: 9090
+
+logging:
+  level:
+    com:
+      istio:
+        product: debug
+
+spring:
+  profiles:
+    active: local

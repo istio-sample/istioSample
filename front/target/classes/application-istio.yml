@@ -3,6 +3,7 @@ feign:
     enabled: false
   core1.url: http://core1:8090
   auth.url: http://auth:9080
+  product.url: http://product:9090
 
 istio:
   blue:
