@@ -64,8 +64,10 @@ spec:
         port:
           number: 9090
         host: product.foo.svc.cluster.local
+        subset : v1
   - route:
     - destination:
         port:
           number: 9090
         host: product.foo.svc.cluster.local
+        subset : v2
