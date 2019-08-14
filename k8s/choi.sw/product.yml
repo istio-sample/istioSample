@@ -35,3 +35,26 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 9090
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: product-v2
+  namespace: foo
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: product
+        version: v2
+    spec:
+      containers:
+        - name: product
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: istio
+          image: mura2393/istio-product-v2:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9090

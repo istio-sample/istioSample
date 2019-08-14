@@ -2,6 +2,7 @@ apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
   name: front
+  namespace: foo
 spec:
   host: front.foo.svc.cluster.local
   subsets:
@@ -11,4 +12,3 @@ spec:
     - name: v2
       labels:
         version: v2
-

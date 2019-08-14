@@ -2,5 +2,5 @@
 # sh파일 경로로 이동 (cd) 후 실행 필요 - front 까지 같이 build/push
 mvn clean package -e -U -Dmaven.test.skip=true
 
-docker build . --tag mura2393/istio-product
-docker push mura2393/istio-product
+docker build . --tag mura2393/istio-product-v2
+docker push mura2393/istio-product-v2

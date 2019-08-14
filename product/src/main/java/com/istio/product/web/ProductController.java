@@ -19,7 +19,7 @@ public class ProductController {
 
         Map map = new HashMap();
 
-        map.put("product-info", "product-info version 1 contents");
+        map.put("product-info", "product-info version 2 contents");
 
         log.info("productInfo::" + map );
 
