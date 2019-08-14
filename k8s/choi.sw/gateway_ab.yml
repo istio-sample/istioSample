@@ -30,14 +30,16 @@ spec:
         prefix: /product
       headers:
         cookie:
-          regex: "^(.*?;)?(user-group=A)(;.*)?$"
+          regex: "^(.*?;)?(user-group=B)(;.*)?$"
     route:
     - destination:
         port:
-          number: 8090
+          number: 8080
         host: front.foo.svc.cluster.local
+        subset: v2
   - route:
     - destination:
         port:
           number: 8080
         host: front.foo.svc.cluster.local
+        subset: v1
