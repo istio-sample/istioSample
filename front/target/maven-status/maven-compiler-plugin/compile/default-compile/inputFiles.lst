@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+/Users/choi/Documents/workspace/workspace-visualcode/skcc/istio/istioSample/front/src/main/java/com/istio/front/sample/web/BlueGreenE2EController.java
 /Users/choi/Documents/workspace/workspace-visualcode/skcc/istio/istioSample/front/src/main/java/com/istio/front/sample/service/SampleService.java
 /Users/choi/Documents/workspace/workspace-visualcode/skcc/istio/istioSample/front/src/main/java/com/istio/front/sample/client/SampleClient.java
 /Users/choi/Documents/workspace/workspace-visualcode/skcc/istio/istioSample/front/src/main/java/com/istio/front/FrontApplication.java
@@ -7,13 +7,3 @@
 /Users/choi/Documents/workspace/workspace-visualcode/skcc/istio/istioSample/front/src/main/java/com/istio/front/sample/client/AuthClient.java
 /Users/choi/Documents/workspace/workspace-visualcode/skcc/istio/istioSample/front/src/main/java/com/istio/front/sample/client/CircuitClient.java
 /Users/choi/Documents/workspace/workspace-visualcode/skcc/istio/istioSample/front/src/main/java/com/istio/front/sample/web/SampleRestController.java
-=======
-D:\programming\workspace-istio\istioSample\front\src\main\java\com\istio\front\sample\client\CircuitClient.java
-D:\programming\workspace-istio\istioSample\front\src\main\java\com\istio\front\sample\client\AuthClient.java
-D:\programming\workspace-istio\istioSample\front\src\main\java\com\istio\front\sample\web\SampleController.java
-D:\programming\workspace-istio\istioSample\front\src\main\java\com\istio\front\FrontApplication.java
-D:\programming\workspace-istio\istioSample\front\src\main\java\com\istio\front\sample\interceptor\HeaderInterceptor.java
-D:\programming\workspace-istio\istioSample\front\src\main\java\com\istio\front\sample\service\SampleService.java
-D:\programming\workspace-istio\istioSample\front\src\main\java\com\istio\front\sample\client\SampleClient.java
-D:\programming\workspace-istio\istioSample\front\src\main\java\com\istio\front\sample\web\SampleRestController.java
->>>>>>> master

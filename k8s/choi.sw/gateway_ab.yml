@@ -1,0 +1,43 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: front-gateway
+  namespace: foo
+spec:
+  selector:
+    istio: ingressgateway # use Istio default gateway implementation
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "*"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: front
+  namespace: foo
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - front-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /product
+      headers:
+        cookie:
+          regex: "^(.*?;)?(user-group=A)(;.*)?$"
+    route:
+    - destination:
+        port:
+          number: 8090
+        host: front.foo.svc.cluster.local
+  - route:
+    - destination:
+        port:
+          number: 8080
+        host: front.foo.svc.cluster.local

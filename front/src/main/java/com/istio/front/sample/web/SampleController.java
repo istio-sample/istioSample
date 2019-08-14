@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -24,8 +25,11 @@ public class SampleController {
     private SampleService sampleService;
 
     @GetMapping("/")
-    public String main(){
+    public String main(HttpServletResponse response){
         log.debug("Call main");
+
+        response.addHeader("test", "test");
+        
         return "index";
     }
 
@@ -51,5 +55,18 @@ public class SampleController {
 
         model.addAttribute("map", sampleService.circuit01(circuitType, failRate, responseCode));
         return "circuitPage";
+    }
+
+    @GetMapping("/ab/login/{userGroup}")
+    public String circuitPage(HttpServletRequest resuest, HttpServletResponse response, @PathVariable("userGroup") final String userGroup){
+
+        response.addHeader("user-group", userGroup);
+
+        return "index";
+    }
+
+    @GetMapping("/product")
+    public String productPage(HttpServletRequest resuest, HttpServletResponse response){
+        return "product";
     }
 }
