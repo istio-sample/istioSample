@@ -9,8 +9,6 @@ spec:
   - route:
     - destination:
         host: core1-app
-        port:
-          number: 8090
         subset: v1-deploy
       weight: 50
     - destination:
